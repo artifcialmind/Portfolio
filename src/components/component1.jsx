@@ -22,6 +22,8 @@ const angleToRadians = (x) => {
 
 let time = new THREE.Clock;
 
+const onReactImg = false;
+
 const Three = () => {
     const [positionHTML, setHtmlPosition] = useState('');
     const envMap = useEnvironment({path: "./img"});
@@ -86,26 +88,7 @@ const Three = () => {
         })
     }
 
-    const handlePointerEnter = (e) => {
-        // onReactImg = true;
-        // onCppImg = true;
-        // onPythonImg = true;
-        // onJsImg = true;
-        // onMongoImg = true;
-        // onAiImg = true;
-        // onfastImg = true;
-
-    }
-    const handlePointerLeave = (e) => {
-        // onReactImg = false;
-        // onCppImg = false;
-        // onPythonImg = false;
-        // onJsImg = false;
-        // onMongoImg = false;
-        // onAiImg = false;
-        // onfastImg = false;
-
-    }
+   
 
     let elapsed_time = 0;
 
@@ -123,6 +106,7 @@ const Three = () => {
         let {x, y} = state.mouse;
         orbitControlRef.current.setAzimuthalAngle(angleToRadians(x*200));
         orbitControlRef.current.setPolarAngle(angleToRadians(y*10));
+        orbitControlRef.current.maxDistance = 20;
         orbitControlRef.current.update();
         // // console.log(orbitControlRef.current.getAzimuthalAngle());
         // const x_pos = 9*Math.cos(orbitControlRef.current.getAzimuthalAngle());
@@ -199,37 +183,37 @@ const Three = () => {
         <>
             <PerspectiveCamera makeDefault position={[0, 3, 12.4]} fov={50} ref={cameraRef}></PerspectiveCamera>
             <OrbitControls ref={orbitControlRef} minPolarAngle={angleToRadians(90)} maxPolarAngle={angleToRadians(0)}></OrbitControls>
-            <mesh rotation={[angleToRadians(6), angleToRadians(-110), angleToRadians(0)]} position={[3, 0, 0]} ref={reactImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh rotation={[angleToRadians(6), angleToRadians(-110), angleToRadians(0)]} position={[3, 0, 0]} ref={reactImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={reactTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[-3, 0, 0]} ref={cppImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[-3, 0, 0]} ref={cppImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={cppTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[-6, 0, 0]} ref={pythonImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[-6, 0, 0]} ref={pythonImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={pythonTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[6, 0, 0]}  rotation = {[angleToRadians(-60), angleToRadians(0), angleToRadians(0)]} ref={jsImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[6, 0, 0]}  rotation = {[angleToRadians(-60), angleToRadians(0), angleToRadians(0)]} ref={jsImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={jsTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[-9, 0, 0]} ref={mongoImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[-9, 0, 0]} ref={mongoImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={mongoTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[9, 0, 0]} ref={aiImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[9, 0, 0]} ref={aiImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={aiTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
-            <mesh position={[11, 0, 0]} ref={fastImageRef} onPointerEnter={handlePointerEnter} onPointerLeave={handlePointerLeave}>
+            <mesh position={[11, 0, 0]} ref={fastImageRef}>
                 <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
                 <meshStandardMaterial map={fastTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>

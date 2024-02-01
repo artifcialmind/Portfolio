@@ -9,7 +9,8 @@ import LightWeight from '../src/components/component4'
 import { Color } from 'three';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
 
   return (
     <div id='Canvas'>
