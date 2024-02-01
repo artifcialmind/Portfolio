@@ -9,7 +9,7 @@ import sunImage from '../assets/sun.jpg';
 import mongoImage from '../assets/mongo.png'
 import fastImage from '../assets/fastapi.jpg'
 import * as THREE from 'three';
-import { Html, OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls, useEnvironment } from "@react-three/drei";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Environment } from "@react-three/drei";
 import Header from "./component2";
@@ -24,6 +24,7 @@ let time = new THREE.Clock;
 
 const Three = () => {
     const [positionHTML, setHtmlPosition] = useState('');
+    const envMap = useEnvironment({path: "./img"});
     let [reactImgPos, setReactPos] = useState([3, 0, 0]);
     const reactTexture = useLoader(THREE.TextureLoader, reactImage);
     const cppTexture = useLoader(THREE.TextureLoader, cppImage);
@@ -262,7 +263,7 @@ const Three = () => {
             <Html position={positionHTML} fullscreen as='div' onAfterRender={htmlReloader}>
                 <Header></Header>
             </Html>
-            <Environment files={'./img/starmap.hdr'} background>
+            <Environment map={envMap} background>
             </Environment>
         </>
     )
