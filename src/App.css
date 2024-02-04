@@ -346,3 +346,50 @@ from {
            filter:hue-rotate(360deg);
    }
 }
+
+#project-container {
+  height: 80%;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
+}
+
+#project-contents {
+  height: 80%;
+  width: 100%;
+  margin-left: 10px;
+  background-color: transparent;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+#close-project {
+  margin: 10px;
+  height: 5%;
+}
+
+.unordered-list-project {
+  list-style-type: circle;
+}
+
+.project-content-heading {
+  color: azure;
+  font-style: oblique;
+}
+
+.project-content-text {
+  color: wheat;
+  font-family: "M PLUS Rounded 1c";
+  font-size: 1rem;
+}
+
+.project-content-div {
+  background: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+  -webkit-animation: rainbow2 1s steps(36) infinite alternate;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

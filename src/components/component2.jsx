@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import '../App.css'
 import ChatBox from "./component3";
+import Projects from "./component5";
 
 
 const Header = () => {
@@ -19,6 +20,7 @@ const Header = () => {
     let [button2BorderColor, setBorderColor2] = useState('');
     let [button3BorderColor, setBorderColor3] = useState('');
     let [button4BorderColor, setBorderColor4] = useState('');
+    let [projectShow, setProjectShow] = useState('');
 
 
     const handlePtrEnter = (e) => {
@@ -119,12 +121,7 @@ const Header = () => {
     let [content, setContent] = useState("");
 
     const handleClick = (e) => {
-        if (e.target.id === 'header-button1'){
-            setContent(() => {
-                return 'Home'
-            });
-        }
-        else if (e.target.id === 'header-button2'){
+        if (e.target.id === 'header-button2'){
             setContent(() => {return "About"});
         }
         else if (e.target.id === 'header-button3'){
@@ -139,6 +136,9 @@ const Header = () => {
         setClicked((prevState) => {
             return true;
         })
+        setProjectShow((prevState) => {
+            return false;
+        })
     }
 
     const handleClickOnCross = () => {
@@ -148,7 +148,16 @@ const Header = () => {
         setMultiClicked(false);
     }
     const handleClickHome = () => {
-        window.location.reload();
+        setProjectShow((prevState) => {
+            return true;
+        })
+        handleClickOnCross();
+    }
+
+    const handleProjectClose = () => {
+        setProjectShow((prevState) => {
+            return false;
+        })
     }
     
     return (
@@ -156,7 +165,7 @@ const Header = () => {
             <header className='button-container'>
                 <div className="back-gradient">
                     <button id="header-button1" style={{fontSize: button1State, borderBottom: button1Border, borderBottomColor: button1BorderColor}} onMouseOver={handlePtrEnter} onMouseOut={handlePtrLeave} onClick={handleClickHome}>
-                        Home
+                        Projects
                     </button>
                 </div>
                 <div className="back-gradient">
@@ -176,6 +185,7 @@ const Header = () => {
                 </div>
             </header>
             {clicked ? <ChatBox customStyle={{animationName: 'chatAnimation', animationDuration: '2s', animationTimingFunction: 'ease-in'}} clickOnCross={handleClickOnCross} clickedMultipleTimes = {multiClicked} contentText={content}></ChatBox> : <></>}
+            {projectShow ? <Projects clickOnClose={handleProjectClose} style={{animationName: 'chatAnimation', animationDuration: '2s', animationTimingFunction: 'ease-in'}}></Projects> : <></>}
         </>
     )
 }

@@ -64,7 +64,6 @@ function detectTextType(inputText) {
     if (normalSentence.length > 0){
         jsx.push(<p>{normalSentence}</p>)
     }
-    console.log(normalText, emails, urls);
     return jsx;
 }
   
