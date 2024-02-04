@@ -11,12 +11,15 @@ import { Color } from 'three';
 function App() {
   const [count, setCount] = useState(0);
 
+  const handleContext = (e) => {
+    e.preventDefault();
+  }
 
   return (
     <div id='Canvas'>
-      <Canvas id='subcanvas'>
+      <Canvas id='subcanvas' onContextMenu={handleContext}>
         <Suspense fallback={<Html as='div' fullscreen><LightWeight></LightWeight></Html>}>
-          <Three></Three>
+          <Three onContextMenu={handleContext}></Three>
         </Suspense>
       </Canvas>
     </div>

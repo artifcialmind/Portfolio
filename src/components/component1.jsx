@@ -41,11 +41,15 @@ const Three = () => {
     const cameraRef = useRef(null);
     const htmlRef = useRef(null);
     let step = 0;
+    
     const calculateRotationalMotion = (r, omega, phase, z, delta_time) => {
         step += 1;
         return [((Math.sqrt(r))*Math.sin(omega*delta_time + phase)), z*Math.cos(omega*delta_time + phase)];
     }
 
+    const handleDrag = (e) => {
+        e.preventDefault();
+    }
 
     
     const reactImageRef = useRef(null);
@@ -182,45 +186,45 @@ const Three = () => {
     return (
         <>
             <PerspectiveCamera makeDefault position={[0, 3, 12.4]} fov={50} ref={cameraRef}></PerspectiveCamera>
-            <OrbitControls ref={orbitControlRef} minPolarAngle={angleToRadians(90)} maxPolarAngle={angleToRadians(0)}></OrbitControls>
+            <OrbitControls ref={orbitControlRef} minPolarAngle={angleToRadians(90)} maxPolarAngle={angleToRadians(90)}></OrbitControls>
             <mesh rotation={[angleToRadians(6), angleToRadians(-110), angleToRadians(0)]} position={[3, 0, 0]} ref={reactImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={reactTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[-3, 0, 0]} ref={cppImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={cppTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[-6, 0, 0]} ref={pythonImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={pythonTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[6, 0, 0]}  rotation = {[angleToRadians(-60), angleToRadians(0), angleToRadians(0)]} ref={jsImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={jsTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[-9, 0, 0]} ref={mongoImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={mongoTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[9, 0, 0]} ref={aiImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={aiTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
             <mesh position={[11, 0, 0]} ref={fastImageRef}>
-                <sphereGeometry args={[0.5, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[0.5, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={fastTexture} metalness={0.65} roughness={0.2}></meshStandardMaterial>
             </mesh>
 
 
             <mesh position={[0, 0, 0]} ref={sunImageRef}>
-                <sphereGeometry args={[1, 320, 320]}></sphereGeometry>
+                <sphereGeometry args={[1, 32, 32]}></sphereGeometry>
                 <meshStandardMaterial map={sunTexture} metalness={0.01} roughness={1}></meshStandardMaterial>
             </mesh>
 
@@ -244,7 +248,7 @@ const Three = () => {
             <spotLight args={['#FCA987', 50]} position={[-6, 0, 4]} distance={100} angle={angleToRadians(150)} ref={mongoImageLight}></spotLight>
             <spotLight args={['#FCA987', 50]} position={[6, 0, 4]} distance={100} angle={angleToRadians(150)} ref={aiImageLight}></spotLight>
             
-            <Html position={positionHTML} fullscreen as='div' onAfterRender={htmlReloader}>
+            <Html position={positionHTML} fullscreen as='div' onAfterRender={htmlReloader} onDrag={handleDrag}>
                 <Header></Header>
             </Html>
             <Environment map={envMap} background>
