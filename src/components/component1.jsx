@@ -111,6 +111,7 @@ const Three = () => {
         orbitControlRef.current.setAzimuthalAngle(angleToRadians(x*200));
         orbitControlRef.current.setPolarAngle(angleToRadians(y*10));
         orbitControlRef.current.maxDistance = 20;
+        orbitControlRef.current.enablePan = false;
         orbitControlRef.current.update();
         // // console.log(orbitControlRef.current.getAzimuthalAngle());
         // const x_pos = 9*Math.cos(orbitControlRef.current.getAzimuthalAngle());
